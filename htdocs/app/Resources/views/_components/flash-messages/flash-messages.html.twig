@@ -1,0 +1,33 @@
+{% if legacy is not defined %}
+    {% set legacy = false %}
+{% endif %}
+
+{% if legacy == true %}
+    {% set flashMessageClassBase = 'legacy-flash-messages' %}
+{% else %}
+    {% set flashMessageClassBase = 'flash-messages' %}
+{% endif %}
+
+{% set flashes = app.flashes %}
+
+{% if flashes|length > 0 %}
+    <div class="{{ flashMessageClassBase }}">
+        {% include '_components/flash-messages/flash-message.html.twig' with {
+            'legacy': legacy,
+            'flashes': flashes,
+            'type': 'success'
+        } %}
+
+        {% include '_components/flash-messages/flash-message.html.twig' with {
+            'legacy': legacy,
+            'flashes': flashes,
+            'type': 'info'
+        } %}
+
+        {% include '_components/flash-messages/flash-message.html.twig' with {
+            'legacy': legacy,
+            'flashes': flashes,
+            'type': 'error'
+        } %}
+    </div>
+{% endif %}

@@ -1,0 +1,19 @@
+{% if legacy is not defined %}
+    {% set legacy = false %}
+{% endif %}
+
+{% if legacy == true %}
+    {% set flashMessageClassBase = 'legacy-flash-messages' %}
+{% else %}
+    {% set flashMessageClassBase = 'flash-messages' %}
+{% endif %}
+
+{% if type in flashes|keys %}
+    <div class="{{ flashMessageClassBase }}__alert {{ flashMessageClassBase }}__alert--{{ type }}">
+        <ul>
+            {% for message in flashes[type] %}
+                <li>{{ message|trans }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
