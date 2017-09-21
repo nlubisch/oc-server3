@@ -1,0 +1,25 @@
+{% block header %}
+
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <title>
+        {{ site.title }}
+        {% if site.page %} &middot; {{ site.page|upper }}  {% endif %}
+        {% if site.version %} &middot; v.{{ site.version }}  {% endif %}
+    </title>
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ asset('web/css/kitchensink.css') }}">
+
+    <!-- Favicons -->
+    <link href="favicon.ico" rel="icon">
+
+{% endblock %}

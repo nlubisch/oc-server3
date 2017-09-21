@@ -1,0 +1,11 @@
+<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+
+    <ul class="nav nav-pills flex-column">
+        {% for item in site.navigation %}
+            <li class="nav-item{% if item.href == site.page %} activeMainSidebar {% endif %}">
+                <a class="nav-link" href="{{ site.base_url }}/{{ item.href }}">{{ item.caption }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</nav>
