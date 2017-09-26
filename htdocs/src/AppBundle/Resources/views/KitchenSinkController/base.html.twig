@@ -5,21 +5,27 @@
 </head>
 
 <body>
-    {{ include('AppBundle:KitchenSinkController/_components:topnavigation.html.twig') }}
+<div class="container-fluid">
+    <div class="row">
+        {{ include('AppBundle:KitchenSinkController/_components:topnavigation.html.twig') }}
+    </div>
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="row">
 
         {{ include('AppBundle:KitchenSinkController/_components:sidebar.html.twig') }}
 
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-            {% block content %}{% endblock %}
+            <a href="#sidebar" data-toggle="collapse">x</a>
+            <hr>
+            <div class="page-header">
+                {% block content %}{% endblock %}
+            </div>
         </main>
 
     </div>
 </div>
 
-    {{ include('AppBundle:KitchenSinkController/_components:footer.html.twig') }}
+{{ include('AppBundle:KitchenSinkController/_components:footer.html.twig') }}
 
 </body>
 </html>

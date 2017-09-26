@@ -1,11 +1,25 @@
-<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+<div class="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in" id="sidebar">
+    <div class="list-group panel">
 
-    <ul class="nav nav-pills flex-column">
-        {% for item in site.navigation %}
-            <li class="nav-item{% if item.href == site.page %} activeMainSidebar {% endif %}">
-                <a class="nav-link" href="{{ site.base_url }}/{{ item.href }}">{{ item.caption }}</a>
-            </li>
+        {% for menu in site.navigation %}
+            <a href="#{{ menu.title }}"
+               class="list-group-item collapsed"
+               data-parent="#sidebar"
+               data-toggle="collapse">
+                <span class="hidden-sm-down">{{ menu.title }}</span></a>
+
+
+            <div class="collapse" id="{{ menu.title }}">
+                {% for submenu in menu.submenu %}
+                    <a href="{{ site.base_url }}/{{ menu.title }}/{{ submenu.href }}"
+                       class="list-group-item"
+                       aria-expanded="false"
+                       data-parent="{{ menu.title }}">
+                        {{ submenu.caption }}
+                    </a>
+                {% endfor %}
+            </div>
         {% endfor %}
-    </ul>
 
-</nav>
+    </div>
+</div>

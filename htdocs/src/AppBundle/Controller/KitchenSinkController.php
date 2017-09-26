@@ -6,10 +6,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-
-
-
-
 /**
  * Class KitchenSinkController
  *
@@ -18,46 +14,97 @@ use Symfony\Component\HttpFoundation\Response;
 class KitchenSinkController extends Controller
 {
     /**
-     * @var string[]
-     */
-    private $sidebarMainMenu = [
-        'home' => [
-            'href' => 'home',
-            'caption' =>'Übersicht'
-        ],
-        'style' =>[
-            'href' => 'style',
-            'caption' => 'Style'
-        ],
-        '404' => [
-            'href' => '404',
-            'caption' =>'Fehler']
-    ];
-
-    /**
-     * @Route("/kitchensink/{page}", defaults={"page" = "home"})
+     * @Route("/kitchensink/{page}/{subpage}", defaults={"page" = "home", "subpage" = "home"})
      * @param string $page
+     * @param string $subpage
      *
      * @return Response
      */
-    public function indexAction($page)
+    public function indexAction($page, $subpage)
     {
-        if (!isset($this->sidebarMainMenu[$page])) {
-            $page = '404';
+        if (!$this->checkPage($page)) {
+            $page = 'sonstiges';
+            $subpage = '404';
         }
 
+        echo '<pre>';
+        var_dump($page);
+
+        die();
+
+
         return $this->render(
-            '@App/KitchenSinkController/' . $page . '.html.twig',
+            '@App/KitchenSinkController/' . strtolower($page) . '/' . strtolower($subpage) . '.html.twig',
             [
                 'site' => [
                     'title' => 'Opencaching Kitchensink',
                     'page' => $page,
                     'version' => '1.0.0',
                     'base_url' => '/kitchensink',
-                    'navigation' => $this->sidebarMainMenu
+                    'navigation' => $this->getSidebarMainMenu()
                 ],
             ]
         );
+    }
+
+    private function checkPage($page) {
+        $menu = $this->getSidebarMainMenu();
+        foreach($menu['menu'] as $title) {
+            if ($title === $page) {
+                return true;
+            }
+        }
+    }
+
+    private function checkSubPage($page, $subPage) {
+        $menu = $this->getSidebarMainMenu();
+        foreach($menu['menu'] as $title) {
+            if ($title === $page) {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    private function getSidebarMainMenu()
+    {
+        return [
+            'menu' =>
+                ['Home' => [
+                    'title' => 'Home',
+                    'submenu' => [
+                        [
+                            'href' => 'home',
+                            'caption' => 'Übersicht'
+                        ]
+                    ]
+                ],
+            [
+                'title' => 'Layout',
+                'submenu' => [
+                    [
+                        'href' => 'style',
+                        'caption' => 'Style'
+                    ],
+                    [
+                        'href' => 'typo',
+                        'caption' => 'Typografie'
+                    ]
+                ]
+            ],
+            [
+                'title' => 'Sonstiges',
+                'submenu' => [
+                    [
+                        'href' => '404',
+                        'caption' => 'Fehler'
+                    ]
+                ]
+
+            ]
+        ];
     }
 }
 
