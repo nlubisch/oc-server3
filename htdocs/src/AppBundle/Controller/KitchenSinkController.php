@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class KitchenSinkController extends Controller
 {
     /**
-     * @Route("/kitchensink/{page}/{subpage}", defaults={"page" = "home", "subpage" = "home"})
+     * @Route("/kitchensink/{page}/{subpage}", defaults={"page" = "Home", "subpage" = "home"})
      * @param string $page
      * @param string $subpage
      *
@@ -23,15 +23,13 @@ class KitchenSinkController extends Controller
     public function indexAction($page, $subpage)
     {
         if (!$this->checkPage($page)) {
-            $page = 'sonstiges';
-            $subpage = '404';
+            $page = 'Sonstiges';
         }
 
-        echo '<pre>';
-        var_dump($page);
-
-        die();
-
+        if (!$this->checkSubPage($page, $subpage)) {
+            $page = 'Sonstiges';
+            $subpage = '404';
+        }
 
         return $this->render(
             '@App/KitchenSinkController/' . strtolower($page) . '/' . strtolower($subpage) . '.html.twig',
@@ -47,19 +45,22 @@ class KitchenSinkController extends Controller
         );
     }
 
-    private function checkPage($page) {
+    private function checkPage($page)
+    {
         $menu = $this->getSidebarMainMenu();
-        foreach($menu['menu'] as $title) {
+        foreach ($menu as $title => $elemnts) {
             if ($title === $page) {
                 return true;
             }
         }
     }
 
-    private function checkSubPage($page, $subPage) {
+    private function checkSubPage($page, $subPage)
+    {
         $menu = $this->getSidebarMainMenu();
-        foreach($menu['menu'] as $title) {
-            if ($title === $page) {
+
+        foreach ($menu[$page]['submenu'] as $subElements) {
+            if ($subElements['href'] === $subPage) {
                 return true;
             }
         }
@@ -70,41 +71,44 @@ class KitchenSinkController extends Controller
      */
     private function getSidebarMainMenu()
     {
-        return [
-            'menu' =>
-                ['Home' => [
-                    'title' => 'Home',
-                    'submenu' => [
-                        [
-                            'href' => 'home',
-                            'caption' => 'Übersicht'
-                        ]
-                    ]
-                ],
-            [
-                'title' => 'Layout',
-                'submenu' => [
-                    [
-                        'href' => 'style',
-                        'caption' => 'Style'
-                    ],
-                    [
-                        'href' => 'typo',
-                        'caption' => 'Typografie'
-                    ]
-                ]
-            ],
-            [
-                'title' => 'Sonstiges',
-                'submenu' => [
-                    [
-                        'href' => '404',
-                        'caption' => 'Fehler'
-                    ]
-                ]
+        $menu = [];
 
+        $menu['Home'] = [
+            'title' => 'Home',
+            'submenu' => [
+                [
+                    'href' => 'home',
+                    'caption' => 'Übersicht'
+                ]
             ]
         ];
+
+        $menu['Layout'] = [
+            'title' => 'Layout',
+            'submenu' => [
+                [
+                    'href' => 'style',
+                    'caption' => 'Style'
+                ],
+                [
+                    'href' => 'typo',
+                    'caption' => 'Typografie'
+                ]
+            ]
+        ];
+
+        $menu['Sonstiges'] = [
+            'title' => 'Sonstiges',
+            'submenu' => [
+                [
+                    'href' => '404',
+                    'caption' => 'Fehler'
+                ]
+            ]
+
+        ];
+
+        return $menu;
     }
 }
 
