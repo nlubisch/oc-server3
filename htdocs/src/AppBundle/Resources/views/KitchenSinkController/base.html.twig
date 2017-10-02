@@ -12,11 +12,39 @@
 
     <div class="row">
 
-        {{ include('AppBundle:KitchenSinkController/_components:sidebar.html.twig') }}
+        <div class="col-md-2 col-xs-1 p-l-0 p-r-0" id="sidebar">
+            <div class="list-group panel">
+
+                {% for menu in site.navigation %}
+                    <a href="{% if menu.href is defined %} {{ menu.href }} {% else %} #{{ menu.title }} {% endif %}"
+                       class="list-group-item collapsed"
+                       data-parent="#sidebar"
+                       data-toggle="collapse">
+                        <span class="hidden-sm-down">
+                            {% if menu.icon is defined %} <i
+                                    class="material-icons md-light">{{ menu.icon }}</i>{% endif %}
+                            {{ menu.title }}
+                            </span></a>
+
+                    {% if menu.submenu is defined %}
+                        <div class="collapse submenu" id="{{ menu.title }}">
+                            {% for submenu in menu.submenu %}
+                                <a href="{{ site.base_url }}/{{ menu.title }}/{{ submenu.href }}"
+                                   class="list-group-item"
+                                   aria-expanded="false"
+                                   data-parent="{{ menu.title }}">
+                                    {{ submenu.caption }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+
 
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-            <a href="#sidebar" data-toggle="collapse">x</a>
-            <hr>
             <div class="page-header">
                 {% block content %}{% endblock %}
             </div>
