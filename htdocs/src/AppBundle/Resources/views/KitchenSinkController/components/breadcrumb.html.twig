@@ -1,11 +1,35 @@
 {% extends '@App/KitchenSinkController/base.html.twig' %}
 
 {% block PageTitle %}
-    <h1>{{ site.page|upper }} {%  if site.subpage %}
+    <h1>{{ site.page|upper }} {% if site.subpage %}
             <i class="material-icons md-36">chevron_right</i> {{ site.subpage|upper }}
         {% endif %}</h1>
 {% endblock %}
 
 {% block content %}
+    <p>Indicate the current page's location within a navigational hierarchy that automatically adds separators via
+       CSS.<br>
+       Separators are automatically added in CSS through ::before and content.</p>
 
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Home</li>
+    </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Library</li>
+    </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active">Data</li>
+    </ol>
+
+    <p>Similar to our navigation components, breadcrumbs work fine with or without the usage of list markup.</p>
+
+    <nav class="breadcrumb">
+        <a class="breadcrumb-item" href="#">Home</a>
+        <a class="breadcrumb-item" href="#">Library</a>
+        <a class="breadcrumb-item" href="#">Data</a>
+        <span class="breadcrumb-item active">Bootstrap</span>
+    </nav>
 {% endblock %}

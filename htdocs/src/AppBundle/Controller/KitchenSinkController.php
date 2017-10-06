@@ -89,7 +89,7 @@ class KitchenSinkController extends Controller
             'title' => 'Components',
             'submenu' => [
                 [
-                    'href' => 'alert',
+                    'href' => 'alerts',
                     'caption' => 'Alerts'
                 ],
                 [
