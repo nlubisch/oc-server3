@@ -1,0 +1,11 @@
+{% extends '@App/KitchenSinkController/base.html.twig' %}
+
+{% block PageTitle %}
+    <h1>{{ site.page|upper }} {%  if site.subpage %}
+            <i class="material-icons md-36">chevron_right</i> {{ site.subpage|upper }}
+        {% endif %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

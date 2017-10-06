@@ -37,6 +37,7 @@ class KitchenSinkController extends Controller
                 'site' => [
                     'title' => 'Opencaching Kitchensink',
                     'page' => $page,
+                    'subpage' => $subpage,
                     'version' => '1.0.0',
                     'base_url' => '/kitchensink',
                     'navigation' => $this->getSidebarMainMenu()
@@ -88,83 +89,79 @@ class KitchenSinkController extends Controller
             'title' => 'Components',
             'submenu' => [
                 [
-                    'href' => '#',
+                    'href' => 'alert',
                     'caption' => 'Alerts'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'badge',
                     'caption' => 'Badge'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'breadcrumb',
                     'caption' => 'Breadcrumb'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'buttons',
                     'caption' => 'Buttons'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'cards',
                     'caption' => 'Cards'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'carousel',
                     'caption' => 'Carousel'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'collapse',
                     'caption' => 'Collapse'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'dropdowns',
                     'caption' => 'Dropdowns'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'forms',
                     'caption' => 'Forms'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'inputgroups',
                     'caption' => 'Input Groups'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'jumbotron',
                     'caption' => 'Jumbotron'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'listgroups',
                     'caption' => 'List Groups'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'modal',
                     'caption' => 'Modal'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'navigation',
                     'caption' => 'Navigation'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'pagination',
                     'caption' => 'Pagination'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'popovers',
                     'caption' => 'Popovers'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'progress',
                     'caption' => 'Progress'
                 ],
                 [
-                    'href' => '#',
-                    'caption' => 'Badge'
-                ],
-                [
-                    'href' => '#',
+                    'href' => 'scrollspy',
                     'caption' => 'Scrollspy'
                 ],
                 [
-                    'href' => '#',
+                    'href' => 'tooltips',
                     'caption' => 'Tooltips'
                 ]
             ],
