@@ -46,12 +46,29 @@ class MenuSubscriber implements EventSubscriberInterface
     {
         $currentItem = $event->getCurrentItem();
 
-        $currentItem->addChild('profile', ['label' => 'Mein Profil']);
+        $currentItem->addChild(
+            'profile',
+            [
+                'label' => 'Mein Profil',
+                'uri' => '/viewprofile.php',
+            ]
+        );
 
-        $currentItem->addChild('statistics', ['label' => 'Statistik']);
+        $currentItem->addChild(
+            'statistics',
+            [
+                'label' => 'Statistik',
+                'uri' => '/mystatpic.php'
+            ]
+        );
 
         $currentItem->addChild('contacts', ['label' => 'Kontakte']);
 
-        $currentItem->addChild('settings', ['label' => 'Einstellungen']);
+        $currentItem->addChild('settings',
+            [
+                'label' => 'Einstellungen',
+                'uri' => ''
+            ]
+        );
     }
 }

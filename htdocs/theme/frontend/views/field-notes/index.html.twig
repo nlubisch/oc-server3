@@ -1,4 +1,4 @@
-{% extends 'index/legacy/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% set page_title = 'field_notes.field_notes' | trans %}
 {% set page_title_image = "resource2/ocstyle/images/misc/32x32-home.png" %}
@@ -6,41 +6,46 @@
 {% import 'macros/geocache.html.twig' as geocache %}
 
 {% block body %}
-    {% if fieldNotes %}
-        <font size="2">
-            <form method="post" action="{{ path('field_notes.delete_multiple') }}">
-                <table class="searchtable field-notes-table" border="0" cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox" id="checkall" onClick="toggleChecks(this, 'selected-field-notes[]')" />
-                            </th>
-                            <th colspan="2">{{ 'field_notes.header.geocache' | trans }}</th>
-                            <th class="nowrap">{{ 'field_notes.header.date' | trans }}</th>
-                            <th class="nowrap">{{ 'field_notes.header.log_type' | trans }}</th>
-                            <th class="nowrap">{{ 'field_notes.header.actions' | trans }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for fieldNote in fieldNotes %}
-                            <tr class="testing-fieldNotes-row{{ loop.index }}">
-                                <td class="{{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}"><input type="checkbox" id="testing-fieldNote-checkbox{{ loop.index }}" name="selected-field-notes[]" value="{{ fieldNote.id }}" /></td>
-                                <td class="{{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}">{{ geocache.geocacheIcon(fieldNote.geoCache.type) }}</td>
-                                <td class="{{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}"><a href="/viewcache.php?cacheid={{ fieldNote.geoCache.cacheId }}">{{ fieldNote.geoCache.name }}</a><br />{{ fieldNote.text | raw}}</td>
-                                <td class="nowrap {{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}">{{ fieldNote.date | date('field_notes.date_format' | trans | desc('Y-m-d H:i')) }}</td>
-                                <td class="nowrap {{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}">{{ ('field_notes.log_type.' ~ fieldNote.type) | trans({}, 'constants') }}</td>
-                                <td class="nowrap {{ cycle(['search_listcolor1', 'search_listcolor2'], loop.index) }}"><a href="/log.php?fieldnoteid={{ fieldNote.id }}">{{ 'field_notes.btn.log_it' | trans }}</a>&nbsp;|&nbsp;<a href="{{ path('field_notes.delete', {id: fieldNote.id}) }}">{{ 'field_notes.btn.delete' | trans }}</a></td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <br />
-                <input type="submit" name="submit" class="btn btn-danger formbutton" value="{{ 'field_notes.btn.delete_selected' | trans }}" />
-            </form>
-        </font>
-    {% else %}
-        <h3>{{ 'field_notes.msg.no_field_notes' | trans }}</h3>
-    {% endif %}
+    <form method="post" action="{{ path('field_notes.delete_multiple') }}">
+        <table class="field-notes-list">
+            <thead>
+                <tr>
+                    <th width="22">
+                        <input type="checkbox" class="js--check-all" data-checkboxes="input[type=checkbox][name='deleteFieldNotes[]']" />
+                    </th>
+                    <th colspan="2">{{ 'field_notes.header.geocache' | trans }}</th>
+                    <th width="135">{{ 'field_notes.header.date' | trans }}</th>
+                    <th width="135">{{ 'field_notes.header.log_type' | trans }}</th>
+                    <th width="100">{{ 'field_notes.header.actions' | trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fieldNote in fieldNotes %}
+                    <tr>
+                        <td><input type="checkbox" name="deleteFieldNotes[]" value="{{ fieldNote.id }}" /></td>
+                        <td>{{ geocache.geocacheIcon(fieldNote.geoCache.type) }}</td>
+                        <td>
+                            <a href="/viewcache.php?cacheid={{ fieldNote.geoCache.cacheId }}">{{ fieldNote.geoCache.name }}</a><br />
+                            {{ fieldNote.text | raw}}
+                        </td>
+                        <td>{{ fieldNote.date | date('field_notes.date_format' | trans | desc('Y-m-d H:i')) }}</td>
+                        <td>{{ ('field_notes.log_type.' ~ fieldNote.type) | trans({}, 'constants') }}</td>
+                        <td><a href="/log.php?fieldnoteid={{ fieldNote.id }}">{{ 'field_notes.btn.log_it' | trans }}</a>&nbsp;|&nbsp;<a href="{{ path('field_notes.delete', {id: fieldNote.id}) }}">{{ 'field_notes.btn.delete' | trans }}</a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">{{ 'field_notes.msg.no_field_notes' | trans }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" name="submit" class="btn btn-danger btn-sm">
+            {% include '_partials/icon.html.twig' with {
+                'class': 'test'
+            } %}
+            {{ 'field_notes.btn.delete_selected' | trans }}
+        </button>
+    </form>
 
     <hr align="left" class="spacer" />
 

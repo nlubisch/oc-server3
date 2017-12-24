@@ -19,16 +19,18 @@ class MenuSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            MenuEnum::MENU_MAIN => 'onConfigureMainMenu',
+            MenuEnum::MENU_MAIN_ACCOUNT => ['onConfigureMenuMainAccount', -1],
         ];
     }
 
     /**
      * @param MenuEvent $event
      */
-    public function onConfigureMainMenu(MenuEvent $event)
+    public function onConfigureMenuMainAccount(MenuEvent $event)
     {
-        $event->getCurrentItem()->addChild(
+        $currentItem = $event->getCurrentItem();
+
+        $currentItem->addChild(
             'field_notes',
             [
                 'label' => 'Field-Notes',

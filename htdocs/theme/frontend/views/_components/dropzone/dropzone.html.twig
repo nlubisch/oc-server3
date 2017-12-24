@@ -1,0 +1,35 @@
+<div class="js--dropzone dropzone" data-paramName="{{ paramName }}">
+
+    <table class="dropzone__files">
+        <tbody class="js--dropzone-previews-container">
+
+        </tbody>
+    </table>
+
+    <div class="js--dropzone-clickable dz-message dz-default">
+        <span>Drop files here</span>
+    </div>
+
+    <div class="js--dropzone-preview-template" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="dropzone-file__name" data-dz-name>
+                        {#<strong class="error text-danger" data-dz-errormessage></strong>#}
+                    </td>
+                    <td class="dropzone-file__size" data-dz-size>
+                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        </div>
+                    </td>
+                    <td class="dropzone-file__actions">
+                        <button data-dz-remove class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

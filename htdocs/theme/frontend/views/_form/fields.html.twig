@@ -1,0 +1,12 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {% if type == 'file' %}
+        {% include '_components/dropzone/dropzone.html.twig' with {
+            'paramName': full_name
+        }%}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{%- endblock form_widget_simple -%}

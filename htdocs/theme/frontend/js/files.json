@@ -3,6 +3,7 @@
     "jquery.plugin-base.js",
     "jquery.state-manager.js",
     "jquery.responsive.js",
-    "plugins/**/*.js"
+    "plugins/**/*.js",
+    "vendor/**/*.js"
   ]
 }

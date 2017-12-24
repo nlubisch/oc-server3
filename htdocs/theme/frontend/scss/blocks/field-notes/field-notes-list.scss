@@ -1,0 +1,13 @@
+@import 'global';
+
+.test {
+    @include icon($fa-var-remove);
+}
+
+.field-notes-list {
+    @include table();
+    @include table-sm();
+    @include table-bordered();
+    @include table-striped();
+    @include table-hover();
+}

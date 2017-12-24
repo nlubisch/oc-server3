@@ -26,7 +26,8 @@ module.exports = function (grunt) {
             all: '<%= dirs.destination %>',
             css: '<%= dirs.destination %>/css/',
             js: '<%= dirs.destination %>/js/',
-            images: '<%= dirs.destination %>/images/'
+            images: '<%= dirs.destination %>/images/',
+            fonts: '<%= dirs.destination %>/fonts/'
         },
         scsslint: {
             development: [
@@ -39,6 +40,16 @@ module.exports = function (grunt) {
             }
         },
         copyto: {
+            fonts: {
+                files: [
+                    {
+                        cwd: '<%= dirs.composer %>/fortawesome/font-awesome/fonts/',
+                        src: ['**/*'],
+                        dest: '<%= dirs.destination %>/fonts/',
+                        expand: true
+                    }
+                ]
+            },
             images: {
                 files: [
                     {
@@ -115,7 +126,7 @@ module.exports = function (grunt) {
                 }
             },
         },
-        watch: {
+        chokidar: {
             images: {
                 files: [
                     '<%= dirs.source %>/images/**/*'
@@ -176,7 +187,8 @@ module.exports = function (grunt) {
     grunt.registerTask('development', [
         'development:js',
         'development:css',
-        'copyto:images'
+        'copyto:images',
+        'copyto:fonts'
     ]);
 
     //Builds css&js once for production
@@ -185,8 +197,12 @@ module.exports = function (grunt) {
         'uglify:production',
         'sass:production',
         'cssmin',
-        'copyto:images'
+        'copyto:images',
+        'copyto:fonts'
     ]);
 
-    grunt.task.renameTask('chokidar', 'watch');
+    grunt.registerTask('watch', [
+        'copyto:fonts',
+        'chokidar'
+    ]);
 };

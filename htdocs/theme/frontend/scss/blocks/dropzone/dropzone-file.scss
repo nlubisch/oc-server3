@@ -1,0 +1,19 @@
+@import 'global';
+
+.dropzone-file {
+    height: 20px;
+    width: 100%;
+
+    &__name {
+        height: 20px;
+    }
+
+    &__size {
+        height: 20px;
+        width: 10%;
+    }
+
+    &__actions {
+        height: 20px;
+    }
+}

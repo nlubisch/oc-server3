@@ -153,7 +153,7 @@ class FieldNotesController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $this->getUser();
 
-        $selectedFieldNotes = $request->get('selected-field-notes');
+        $selectedFieldNotes = $request->get('deleteFieldNotes');
         if (!is_array($selectedFieldNotes)) {
             return $this->redirectToRoute('field_notes.index');
         }

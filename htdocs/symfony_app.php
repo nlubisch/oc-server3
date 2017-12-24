@@ -18,7 +18,6 @@ $response = $kernel->handle($request);
  * @var array $excludeRoutes Which routes should be displayed in the legacy layout?
  */
 $excludeRoutes = [
-    'field_notes.index'
 ];
 
 if ($response->getStatusCode() === 404) {

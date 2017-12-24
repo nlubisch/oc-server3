@@ -30,6 +30,8 @@
     ]);
 
     window.StateManager.addPlugin('body', 'ocHelloWorld');
+    window.StateManager.addPlugin('.js--check-all', 'ocCheckAll');
+    window.StateManager.addPlugin('.js--dropzone', 'ocDropzone');
 
     window.StateManager.registerListener([{
         state: '*',

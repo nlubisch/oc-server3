@@ -1,6 +1,11 @@
 @import 'global';
 
 //==========BLOCKS==========//
+@import 'blocks/dropzone/dropzone';
+@import 'blocks/dropzone/dropzone-file';
+
+@import 'blocks/field-notes/field-notes-list';
+
 @import 'blocks/flash-messages/flash-messages';
 
 @import 'blocks/main/main';
@@ -13,4 +18,5 @@
 
 //==========BOOTSTRAP==========//
 @import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/buttons';
 @import 'common';

@@ -1,0 +1,15 @@
+@import '~font-awesome/scss/variables';
+@import '~font-awesome/scss/mixins';
+@import '~font-awesome/scss/path';
+@import '~font-awesome/scss/core';
+
+@mixin icon ($icon, $color: $white, $size: $font-size-base) {
+    @include fa-icon();
+
+    font-size: $size;
+    color: $color;
+
+    &::before {
+        content: $icon;
+    }
+}

@@ -4,4 +4,6 @@
 @import 'settings_legacy';
 @import '~bootstrap/scss/mixins';
 
+@import '_mixins/icon';
 @import '_mixins/position';
+@import '_mixins/table';

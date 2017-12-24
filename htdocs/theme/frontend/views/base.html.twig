@@ -41,6 +41,13 @@
 
         {% block javascripts %}
             <script src="{{ asset('assets/js/main.js') }}"></script>
+            <script type="text/javascript">
+                Dropzone.autoDiscover = false;
+                Dropzone.createElement = function(string) {
+                    var el = $(string);
+                    return el[0];
+                };
+            </script>
         {% endblock %}
     </body>
 </html>
