@@ -50,8 +50,6 @@ class PageController extends AbstractController
      */
     public function indexAction($slug)
     {
-        $this->setMenu(MNU_START);
-
         try {
             $pageStruct = $this->pageProvider->getPageBySlug($slug);
         } catch (PageNotFoundException $e) {
