@@ -1,1 +1,16 @@
 {% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Hallo Welt!</h1>
+
+    {% for role in roles %}
+        <h2>{{ role.id }}</h2>
+        <h2>{{ role.role }}</h2>
+        <hr>
+    {% endfor %}
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('backend_index_index') }}">BACKEND</a>
+    {% endif %}
+{% endblock %}

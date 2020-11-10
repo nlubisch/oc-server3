@@ -9,11 +9,9 @@
     </head>
     <body>
         {% block body %}
+            {% block content %}
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('backend_index_index') }}">BACKEND</a>
-            {% endif %}
-
+            {% endblock %}
         {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
